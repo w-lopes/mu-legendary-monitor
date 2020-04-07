@@ -141,7 +141,7 @@
 
                     M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
-                    window.setTimeout(loadLevels, 7000);
+                    window.setTimeout(loadLevels, 10000);
                 });
             })();
 
@@ -182,7 +182,7 @@
 
                     M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
-                    window.setTimeout(loadCoins, 7000);
+                    window.setTimeout(loadCoins, 30000);
                 });
             })();
         });
