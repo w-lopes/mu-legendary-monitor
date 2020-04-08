@@ -23,13 +23,13 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s4"><a href="#levels">Levels</a></li>
-                    <li class="tab col s4"><a href="#account">Add Account</a></li>
+                    <li class="tab col s6"><a href="#levels">Characters</a></li>
+                    <li class="tab col s6"><a href="#account">Add Account</a></li>
                 </ul>
             </div>
             <div id="levels" class="col offset-l1 l10 s12">
                 <h6>It will ignore chars with level < 200 and without RR ou RB.</h6>
-                <small class="grey-text">May take some minutes to update!</small>
+                <small class="grey-text">it may take a few minutes to synchronize with server data!</small>
                 <ul class="collapsible"></ul>
             </div>
             <div id="account" class="col offset-l1 l10 s12">
@@ -126,7 +126,11 @@
                             "<b>Level: </b>" + info.Level + "<br/>" +
                             "<b>MasterLevel: </b>" + info.MasterLevel + "<br/>" +
                             "<b>Reset: </b>" + info.ResetCount + "<br/>" +
-                            "<b>Rebirth: </b>" + info.Rebirth + "<br/>";
+                            "<b>Rebirth: </b>" + info.Rebirth + "<br/>" +
+                            "<hr/>" +
+                            "<b>WCoin: </b>" + info.coins.WCoin + "<br/>" +
+                            "<b>HuntCoin: </b>" + info.coins.HCoin + "<br/>" +
+                            "<b>GoblinPoint: </b>" + info.coins.GPoint + "<br/>";
 
                         name.appendChild(icon);
                         name.appendChild(namelbl);
@@ -137,7 +141,8 @@
 
                     M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
-                    window.setTimeout(loadLevels, 10000);
+                    var update_time = Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000;
+                    window.setTimeout(loadLevels, update_time);
                 });
             })();
         });

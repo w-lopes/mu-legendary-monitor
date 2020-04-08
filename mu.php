@@ -84,26 +84,10 @@ class Call
             if (substr($char, 0, 1) === ".") {
                 continue;
             }
-            $info = json_decode(file_get_contents(PATH_CHARS . $char));
-            $ret[$char]= $info;
-        }
-        ksort($ret);
-        return $ret;
-    }
 
-    public function coins()
-    {
-        $ret = [];
-        foreach (new DirectoryIterator(PATH_COINS) as $char) {
-            if($char->isDot()){
-                continue;
-            }
-            $char = $char->getFilename();
-            if (substr($char, 0, 1) === ".") {
-                continue;
-            }
-            $info       = json_decode(file_get_contents(PATH_COINS . $char));
-            $info->Name = $char;
+            $info        = json_decode(file_get_contents(PATH_CHARS . $char));
+            $info->coins = json_decode(file_get_contents(PATH_COINS . $char));
+
             $ret[$char] = $info;
         }
         ksort($ret);
