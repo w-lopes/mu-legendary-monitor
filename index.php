@@ -29,11 +29,13 @@
                 </ul>
             </div>
             <div id="levels" class="col offset-l1 l10 s12">
-                <h6>It will ignore chars with level < 20 and without RR ou RB.</h6>
+                <h6>It will ignore chars with level < 200 and without RR ou RB.</h6>
                 <small class="grey-text">May take some minutes to update!</small>
                 <ul class="collapsible"></ul>
             </div>
             <div id="coins" class="col offset-l1 l10 s12">
+                <h6>It will ignore chars with level < 200 and without RR ou RB.</h6>
+                <small class="grey-text">May take some minutes to update!</small>
                 <ul class="collapsible"></ul>
             </div>
             <div id="account" class="col offset-l1 l10 s12">
@@ -107,7 +109,7 @@
                     for (var char in data) {
                         var info    = data[char];
 
-                        if (info.Level < 20 && !info.ResetCount && !info.Rebirth) {
+                        if (info.Level < 200 && !info.ResetCount && !info.Rebirth) {
                             continue;
                         }
 
@@ -154,6 +156,11 @@
 
                     for (var char in data) {
                         var info    = data[char];
+
+                        if (info.Level < 200 && !info.ResetCount && !info.Rebirth) {
+                            continue;
+                        }
+
                         var li      = document.createElement("li");
                         var icon    = document.createElement("i");
                         var name    = document.createElement("div");
