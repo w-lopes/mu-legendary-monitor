@@ -21,6 +21,7 @@ for (;;) {
             if (substr($username, 0, 1) === ".") {
                 continue;
             }
+
             $password = file_get_contents(PATH_ACCOUNT . $username);
 
             echo "Getting {$username}..." . PHP_EOL;
@@ -42,7 +43,22 @@ for (;;) {
 
         unset($call);
 
-        sleep(2);
+        sleep(1);
+    }
+
+    foreach (new DirectoryIterator(PATH_CHARS) as $char) {
+        if($char->isDot()){
+            continue;
+        }
+        $file = $char->getFilename();
+        if (substr($file, 0, 1) === ".") {
+            continue;
+        }
+        $diff = time() - $char->getMTime();
+        if ($diff > 120) {
+            echo "Removing '{$file}'" . PHP_EOL;
+            @unlink($char->getPathname());
+        }
     }
 
     echo "Done!" . PHP_EOL;
