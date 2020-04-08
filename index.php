@@ -24,16 +24,10 @@
             <div class="col s12">
                 <ul class="tabs">
                     <li class="tab col s4"><a href="#levels">Levels</a></li>
-                    <li class="tab col s4"><a href="#coins">Coins</a></li>
                     <li class="tab col s4"><a href="#account">Add Account</a></li>
                 </ul>
             </div>
             <div id="levels" class="col offset-l1 l10 s12">
-                <h6>It will ignore chars with level < 200 and without RR ou RB.</h6>
-                <small class="grey-text">May take some minutes to update!</small>
-                <ul class="collapsible"></ul>
-            </div>
-            <div id="coins" class="col offset-l1 l10 s12">
                 <h6>It will ignore chars with level < 200 and without RR ou RB.</h6>
                 <small class="grey-text">May take some minutes to update!</small>
                 <ul class="collapsible"></ul>
@@ -144,52 +138,6 @@
                     M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
                     window.setTimeout(loadLevels, 10000);
-                });
-            })();
-
-            ;(function loadCoins() {
-                call("coins", [], function(data) {
-                    var coins = document.querySelector("#coins")
-                    container = coins.querySelector(".collapsible");
-
-                    container.innerHTML = "";
-
-                    for (var char in data) {
-                        var info    = data[char];
-
-                        if (info.Level < 200 && !info.ResetCount && !info.Rebirth) {
-                            continue;
-                        }
-
-                        var li      = document.createElement("li");
-                        var icon    = document.createElement("i");
-                        var name    = document.createElement("div");
-                        var namelbl = document.createElement("span");
-                        var body    = document.createElement("div");
-
-                        icon.className   = "material-icons";
-                        icon.textContent = "person";
-
-                        name.className    = "collapsible-header";
-                        namelbl.innerHTML = "<b>" + info.Name + "</b>";
-
-                        body.className = "collapsible-body";
-
-                        body.innerHTML = 
-                            "<b>WCoin: </b>" + info.WCoin + "<br/>" +
-                            "<b>HuntCoin: </b>" + info.HCoin + "<br/>" +
-                            "<b>GoblinPoints: </b>" + info.GPoint + "<br/>";
-
-                        name.appendChild(icon);
-                        name.appendChild(namelbl);
-                        li.appendChild(name);
-                        li.appendChild(body);
-                        container.appendChild(li);
-                    }
-
-                    M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
-
-                    window.setTimeout(loadCoins, 30000);
                 });
             })();
         });
