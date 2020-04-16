@@ -118,7 +118,7 @@
 
                         name.className     = "collapsible-header";
                         namelbl.innerHTML  = "<b>" + info.Name + "</b> [" + info.Level + " + " + info.MasterLevel + "]";
-                        namelbl.innerHTML += "<span class='right'>[RR: " + info.ResetCount + " RB: " + info.Rebirth + "]</span>";
+                        namelbl.innerHTML += "<small style='margin-left: 5px'>[RR: " + info.ResetCount + " RB: " + info.Rebirth + "]</small>";
 
                         body.className = "collapsible-body";
 
@@ -143,7 +143,7 @@
                     M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
                     var update_time = Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000;
-                    window.setTimeout(loadLevels, update_time);
+                    // window.setTimeout(loadLevels, update_time);
                 });
             })();
         });
