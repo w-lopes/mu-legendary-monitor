@@ -118,7 +118,7 @@
 
                         name.className     = "collapsible-header";
                         namelbl.innerHTML  = "<b>" + info.Name + "</b> [" + info.Level + " + " + info.MasterLevel + "]";
-                        namelbl.innerHTML += "<span>[RR: " + info.ResetCount + " RB: " + info.Rebirth + "]</span>";
+                        namelbl.innerHTML += "<span class='right'>[RR: " + info.ResetCount + " RB: " + info.Rebirth + "]</span>";
 
                         body.className = "collapsible-body";
 
