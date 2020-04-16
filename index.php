@@ -116,8 +116,9 @@
                         icon.className   = "material-icons";
                         icon.textContent = "person";
 
-                        name.className    = "collapsible-header";
-                        namelbl.innerHTML = "<b>" + info.Name + "</b> [" + info.Level + " + " + info.MasterLevel + "]";
+                        name.className     = "collapsible-header";
+                        namelbl.innerHTML  = "<b>" + info.Name + "</b> [" + info.Level + " + " + info.MasterLevel + "]";
+                        namelbl.innerHTML += "[RR: " + info.ResetCount + " RB: " + info.Rebirth + "]";
 
                         body.className = "collapsible-body";
 
