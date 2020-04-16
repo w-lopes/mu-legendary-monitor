@@ -143,7 +143,7 @@
                     M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
 
                     var update_time = Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000;
-                    // window.setTimeout(loadLevels, update_time);
+                    window.setTimeout(loadLevels, update_time);
                 });
             })();
         });
