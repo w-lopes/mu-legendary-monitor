@@ -117,6 +117,13 @@
                         icon.textContent = "person";
 
                         name.className     = "collapsible-header";
+
+                        if (info.Level == 400 && info.MasterLevel == 350 && info.ResetCount == 10) {
+                            name.className += " green accent-2 ";
+                        } else if (info.Level == 400) {
+                            name.className += " blue lighten-4 ";
+                        }
+
                         namelbl.innerHTML  = "<b>" + info.Name + "</b> [" + info.Level + " + " + info.MasterLevel + "]";
                         namelbl.innerHTML += "<small style='margin-left: 5px'>[RR: " + info.ResetCount + " RB: " + info.Rebirth + "]</small>";
 
