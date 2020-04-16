@@ -58,9 +58,9 @@
     <div class="footer">Unnoficial <a href="https://mulegendary.net" target="_blank">Mu Legendary</a> account monitoring</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
+        window["ignores"] = JSON.parse(window.localStorage["ignores"] || "{}");
         window.addEventListener("load", function() {
             M.Tabs.init(document.querySelectorAll(".tabs"), {});
-
 
             var ClassListDef = [
                 "Dark Wizard",
@@ -107,31 +107,45 @@
                             continue;
                         }
 
+                        var ign     = document.createElement("i");
                         var li      = document.createElement("li");
                         var icon    = document.createElement("i");
                         var name    = document.createElement("div");
                         var namelbl = document.createElement("span");
                         var body    = document.createElement("div");
 
+                        li.id = "char-" + info.Name;
+
                         icon.className   = "material-icons";
                         icon.textContent = "trending_up";
+                        ign.className    = "material-icons left";
+                        ign.textContent  = "remove_red_eye";
+                        ign.title        = "Ignore/Restore";
                         name.title       = info.Name + " is leveling...";
                         
                         name.className     = "collapsible-header";
+
+                        ign.addEventListener("click", toggleIgnore(info.Name));
                         
-                        
-                        if (info.Level == 400 && info.MasterLevel == 350 && info.ResetCount == 10 && info.Rebirth == 1) {
-                            name.className   += " grey darken-3 white-text ";
-                            icon.textContent  = "done_all";
-                            name.title        = "Mastered!";
-                            icon.className   += " pulse ";
-                        } else if (info.Level == 400 && info.MasterLevel == 350 && info.ResetCount == 10) {
-                            name.className   += " green accent-2 pulse ";
-                            icon.textContent  = "replay";
-                            name.title        = "Rebirth needed";
-                        } else if (info.Level == 400) {
-                            icon.textContent  = "refresh";
-                            name.className   += " blue lighten-4 pulse ";
+                        console.log(ignores)
+                        if (typeof ignores[info.Name] === "undefined") {
+                            if (info.Level == 400 && info.MasterLevel == 350 && info.ResetCount == 10 && info.Rebirth == 1) {
+                                name.className   += " grey darken-3 white-text ";
+                                icon.textContent  = "done_all";
+                                name.title        = "Mastered!";
+                                icon.className   += " pulse ";
+                            } else if (info.Level == 400 && info.MasterLevel == 350 && info.ResetCount == 10) {
+                                name.className   += " green accent-2 pulse ";
+                                icon.textContent  = "replay";
+                                name.title        = "Rebirth needed";
+                            } else if (info.Level == 400) {
+                                icon.textContent  = "refresh";
+                                name.className   += " blue lighten-4 pulse ";
+                                name.title        = "Reset needed";
+                            }
+                        } else {
+                            icon.textContent  = "perm_identity";
+                            name.className   += " white grey-text lighten-5 ";
                             name.title        = "Reset needed";
                         }
 
@@ -151,6 +165,7 @@
                             "<b>HuntCoin: </b>" + info.coins.HCoin + "<br/>" +
                             "<b>GoblinPoint: </b>" + info.coins.GPoint + "<br/>";
 
+                        name.appendChild(ign);
                         name.appendChild(icon);
                         name.appendChild(namelbl);
                         li.appendChild(name);
@@ -178,6 +193,20 @@
                 document.querySelector("#password").value = "";
             });
             return false;
+        }
+
+        function toggleIgnore(nick) {
+            return function(e) {
+                e.stopPropagation();
+                if (typeof ignores[nick] === "undefined") {
+                    ignores[nick] = true;
+                } else {
+                    delete ignores[nick];
+                }
+                console.log(ignores);
+                window.localStorage["ignores"] = JSON.stringify(ignores);
+                window.location.reload();
+            };
         }
 
         function call(method, params, callback) {
