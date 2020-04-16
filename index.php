@@ -114,14 +114,25 @@
                         var body    = document.createElement("div");
 
                         icon.className   = "material-icons";
-                        icon.textContent = "person";
-
+                        icon.textContent = "trending_up";
+                        name.title       = info.Name + " is leveling...";
+                        
                         name.className     = "collapsible-header";
-
-                        if (info.Level == 400 && info.MasterLevel == 350 && info.ResetCount == 10) {
-                            name.className += " green accent-2 ";
+                        
+                        
+                        if (info.Level == 400 && info.MasterLevel == 350 && info.ResetCount == 10 && info.Rebirth == 1) {
+                            name.className   += " grey darken-3 white-text ";
+                            icon.textContent  = "done_all";
+                            name.title        = "Mastered!";
+                            icon.className   += " pulse ";
+                        } else if (info.Level == 400 && info.MasterLevel == 350 && info.ResetCount == 10) {
+                            name.className   += " green accent-2 pulse ";
+                            icon.textContent  = "replay";
+                            name.title        = "Rebirth needed";
                         } else if (info.Level == 400) {
-                            name.className += " blue lighten-4 ";
+                            icon.textContent  = "refresh";
+                            name.className   += " blue lighten-4 pulse ";
+                            name.title        = "Reset needed";
                         }
 
                         namelbl.innerHTML  = "<b>" + info.Name + "</b> [" + info.Level + " + " + info.MasterLevel + "]";
