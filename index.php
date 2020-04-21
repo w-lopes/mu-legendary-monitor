@@ -138,7 +138,7 @@
                                 name.className   += " green accent-2 pulse ";
                                 icon.textContent  = "replay";
                                 name.title        = "Rebirth needed";
-                            } else if (info.Level == 400) {
+                            } else if (info.Level == 400 && info.ResetCount != 10) {
                                 icon.textContent  = "refresh";
                                 name.className   += " blue lighten-4 pulse ";
                                 name.title        = "Reset needed";
