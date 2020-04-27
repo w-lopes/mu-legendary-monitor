@@ -1,5 +1,7 @@
 # Mu Legendary Monitor
 
+# Parei de jogar, então talvez não funcione mais quando estiver lendo isso.
+
 ### [SITE OFICIAL DO SERVIDOR](https://mulegendary.net/)
 
 ### Como rodar:
